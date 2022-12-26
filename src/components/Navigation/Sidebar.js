@@ -5,7 +5,7 @@ import { faUser , faGraduationCap } from '@fortawesome/free-solid-svg-icons'
 function Sidebar() {
 
     const menu = sidebarMenu.map((item) => 
-        <li className="menu-item text-lg font-semibold cursor-pointer">
+        <li className="menu-item text-lg font-semibold cursor-pointer" key={item.label}>
             <a className="flex items-center gap-3 px-3 py-3 rounded-lg text-zinc-400 hover:text-white hover:bg-blue-500" href={item.route}>
                 <FontAwesomeIcon icon={faUser} />
                 <span>{item.label}</span>
