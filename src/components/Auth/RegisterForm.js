@@ -12,6 +12,9 @@ export const RegisterForm = (props) => {
             <button type="submit">
                 Invia
             </button>   
+            <button onClick={(e) => props.switchTemplate('login')}>
+                Login
+            </button>   
         </form>
     )
 }

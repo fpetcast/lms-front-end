@@ -1,12 +1,12 @@
 import { Navigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../context/Auth.context';
+import { GlobalContext } from '../../context/Global.context';
 
 const ProtectedRoute = ({ children }) => {
-    const state = useContext(AuthContext);
+    const state = useContext(GlobalContext);
 
     if (!state.isLoggedIn) {
-      console.log('ENTER FIRST');
+      console.log('LOGIN REDIRECT');
       return <Navigate to="/login" replace />;
     }
   

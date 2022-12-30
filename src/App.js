@@ -3,14 +3,14 @@ import { RouterProvider } from 'react-router-dom';
 import router from './router/router';
 
 import { useContext } from 'react';
-import { AuthContext } from './context/Auth.context';
+import { GlobalContext } from './context/Global.context';
 
 import Sidebar from './components/Navigation/Sidebar';
 
 import './App.css';
 
 function App() {
-  const { state } = useContext(AuthContext);
+  const { state } = useContext(GlobalContext);
   
   return (
     <div className="app-container w-full bg-app min-h-screen flex">
