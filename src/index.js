@@ -6,12 +6,12 @@ import './assets/scss/main.css'
 import reportWebVitals from './reportWebVitals';
 // import { GlobalContextProvider } from './context/Global.context';
 import { Provider } from 'react-redux'
-import { globalStore } from './store/globalStore';
+import {store} from "./store/store"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <Provider >
+    <Provider store={store}>
       <App />
     </Provider>
   // </React.StrictMode>

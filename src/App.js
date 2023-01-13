@@ -2,20 +2,19 @@
 import { RouterProvider } from 'react-router-dom';
 import router from './router/router';
 
-import { useContext } from 'react';
-import { GlobalContext } from './context/Global.context';
+import { useSelector, useDispatch } from 'react-redux'
 
 import Sidebar from './components/Navigation/Sidebar';
 
 import './App.css';
 
 function App() {
-  const { globalState } = useContext(GlobalContext);
-  
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
   return (
     <div className="app-container w-full bg-app min-h-screen flex">
       {
-         globalState.isLoggedIn && <Sidebar></Sidebar>
+         isLoggedIn && <Sidebar></Sidebar>
       }
       <div className='router-container w-full'>
         <RouterProvider router={router} />

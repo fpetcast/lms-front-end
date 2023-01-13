@@ -1,12 +1,9 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import { globalSearchSlice, imageSearchSlice } from "./slices.js"
-
-const reducers = combineReducers({
-  [globalSearchSlice.name]: globalSearchSlice.reducer,
-  [imageSearchSlice.name]: imageSearchSlice.reducer,
-})
+import { configureStore } from "@reduxjs/toolkit"
+import authSlice from "./slices/authSlice"
 
 export const store = configureStore({
-  reducer: reducers,
+  reducer: {
+    auth : authSlice
+  },
   devTools: process.env.NODE_ENV !== "production",
 })

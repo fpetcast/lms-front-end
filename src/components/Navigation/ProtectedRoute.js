@@ -1,11 +1,13 @@
 import { Navigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { GlobalContext } from '../../context/Global.context';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const ProtectedRoute = ({ children }) => {
-    const globalState = useContext(GlobalContext);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  console.log('[Protected Route Component]',isLoggedIn)
 
-    if (!globalState.isLoggedIn) {
+
+    if (!isLoggedIn) {
       console.log('LOGIN REDIRECT');
       return <Navigate to="/login" replace />;
     }

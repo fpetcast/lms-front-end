@@ -1,15 +1,11 @@
-import { useState , useContext } from 'react'
-import { GlobalContext , GlobalConsumer } from '../../context/Global.context';
+import { useState } from 'react'
 import { Button } from '../Atoms/Btn';
 import { useNavigate } from "react-router-dom";
 
 export const LoginForm = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login , globalState } = useContext(GlobalContext);
-    const dispatch  = useContext(GlobalConsumer);
     const navigate = useNavigate();
-    console.log('APP STATE',globalState)
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
@@ -21,14 +17,6 @@ export const LoginForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        login(email,password).then((res) => {
-            if(res) {
-                console.log(dispatch)
-                dispatch({ type: "LOGGED_IN"});
-                console.log('LOGIN STATE IN COMP',globalState)       
-                navigate("/");
-            }
-        })
     };
 
     return (

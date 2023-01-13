@@ -1,27 +1,55 @@
 import {
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
     LOGOUT,
-    LOGIN,
-    REGISTER,
-  } from '../constants/actionTypes';
+  } from "../constants/actionTypes";
   
-const defaultState = {
-    appName: 'Conduit',
-    token: null,
-};
+const user = JSON.parse(localStorage.getItem("user"));
 
-export default (state = defaultState, action) => {
-switch (action.type) {
-    case LOGOUT:
-    return { ...state, redirectTo: '/', token: null, currentUser: null };
-    case LOGIN:
-    case REGISTER:
-    return {
-        ...state,
-        redirectTo: action.error ? null : '/',
-        token: action.error ? null : action.payload.user.token,
-        currentUser: action.error ? null : action.payload.user
-    };
-    default:
-    return state;
+const initialState = {
+    loading: false,
+    user: user ? user : {}, // for user object
+    isLoggedIn: user ? true : false,
+    token: null, // for storing the JWT
+    error: null,
+    success: false, // for monitoring the registration process.
 }
-};
+  
+export default function (state = initialState, action) {
+    const { type, payload } = action;
+  
+    switch (type) {
+      case REGISTER_SUCCESS:
+        return {
+          ...state,
+          isLoggedIn: false,
+        };
+      case REGISTER_FAIL:
+        return {
+          ...state,
+          isLoggedIn: false,
+        };
+      case LOGIN_SUCCESS:
+        return {
+          ...state,
+          isLoggedIn: true,
+          user: payload.user,
+        };
+      case LOGIN_FAIL:
+        return {
+          ...state,
+          isLoggedIn: false,
+          user: null,
+        };
+      case LOGOUT:
+        return {
+          ...state,
+          isLoggedIn: false,
+          user: null,
+        };
+      default:
+        return state;
+    }
+}
