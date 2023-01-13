@@ -4,14 +4,16 @@ import App from './App';
 import './index.css';
 import './assets/scss/main.css'
 import reportWebVitals from './reportWebVitals';
-import { GlobalContextProvider } from './context/Global.context';
+// import { GlobalContextProvider } from './context/Global.context';
+import { Provider } from 'react-redux'
+import { globalStore } from './store/globalStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <GlobalContextProvider>
+    <Provider >
       <App />
-    </GlobalContextProvider>
+    </Provider>
   // </React.StrictMode>
 );
 

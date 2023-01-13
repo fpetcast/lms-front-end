@@ -10,12 +10,12 @@ import Sidebar from './components/Navigation/Sidebar';
 import './App.css';
 
 function App() {
-  const { state } = useContext(GlobalContext);
+  const { globalState } = useContext(GlobalContext);
   
   return (
     <div className="app-container w-full bg-app min-h-screen flex">
       {
-         state.isLoggedIn && <Sidebar></Sidebar>
+         globalState.isLoggedIn && <Sidebar></Sidebar>
       }
       <div className='router-container w-full'>
         <RouterProvider router={router} />

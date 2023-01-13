@@ -4,13 +4,16 @@ import { RegisterForm } from '../../components/Auth/RegisterForm';
 import loginSvg from '../../assets/images/sitting-reading.svg'
 import registerSvg from '../../assets/images/reading-side.svg'
 
-import {useState , useEffect} from 'react'
-import { getRequest } from '../../api/config'
+import {useState , useEffect , useContext} from 'react';
+// import { getRequest } from '../../api/config'
+// import { GlobalContext } from '../../context/Global.context';
+// import {useNavigate} from 'react-router-dom'
 
 function Login() {
     const [authTemplate, setAuthTemplate] = useState('login');
-    const [data, setData] = useState([]);
-
+    // const [data, setData] = useState([]);
+    // const {globalState} = useContext(GlobalContext)
+    // const navigate = useNavigate()
 
     // async function getSomething() {
     //     console.log('NOW')
@@ -18,18 +21,16 @@ function Login() {
     //     console.log('FETCH DATA', data)
     // }
 
-    useEffect(() => {
-        if(data.length === 0) {
-            console.log('HOW MANY USE EFFECT')
-            getRequest('entries').then(
-                (res) => {
-                    setData(res.data.entries)
+    // useEffect(() => {
+    //     console.log('HOW MANY USE EFFECT')
+    //     getRequest('entries').then(
+    //         (res) => {
+    //             setData(res.data.entries)
 
-                    console.log('DATA', res.data.entries)
-                }
-            )
-        }
-    }, [])
+    //             console.log('DATA', data)
+    //         }
+    //     )
+    // }, [data.length])
 
     function handleAuthTemplate(template) {
         console.log('SWITCH',template)

@@ -3,9 +3,9 @@ import { useContext } from 'react';
 import { GlobalContext } from '../../context/Global.context';
 
 const ProtectedRoute = ({ children }) => {
-    const state = useContext(GlobalContext);
+    const globalState = useContext(GlobalContext);
 
-    if (!state.isLoggedIn) {
+    if (!globalState.isLoggedIn) {
       console.log('LOGIN REDIRECT');
       return <Navigate to="/login" replace />;
     }
