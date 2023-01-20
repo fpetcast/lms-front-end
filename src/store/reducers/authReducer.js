@@ -7,18 +7,21 @@ import {
   } from "../constants/actionTypes";
   
 const user = JSON.parse(localStorage.getItem("user"));
+const token = JSON.parse(localStorage.getItem("token"));
 
-const initialState = {
-    loading: false,
-    user: user ? user : {}, // for user object
-    isLoggedIn: user ? true : false,
-    token: null, // for storing the JWT
-    error: null,
-    success: false, // for monitoring the registration process.
+const authInitialState = {
+  user: user ? user : null,
+  isLoggedIn: user ? true : false,
+  token: token ? token : null,
+  error: null,
+  success: false,
+  loading: false,
 }
-  
-export default function (state = initialState, action) {
+
+export default function authReducer(state = authInitialState, action) {
     const { type, payload } = action;
+
+    console.log('DISPATCH ACTION',action)
   
     switch (type) {
       case REGISTER_SUCCESS:
@@ -36,6 +39,7 @@ export default function (state = initialState, action) {
           ...state,
           isLoggedIn: true,
           user: payload.user,
+          token: payload.token,
         };
       case LOGIN_FAIL:
         return {
@@ -48,6 +52,7 @@ export default function (state = initialState, action) {
           ...state,
           isLoggedIn: false,
           user: null,
+          token: null
         };
       default:
         return state;

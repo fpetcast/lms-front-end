@@ -30,7 +30,14 @@ const fakeLogin = (email, password) =>  {
     return new Promise((res, rej) => {
       setTimeout(() => {
         if (email === 'admin' && password === 'admin') {
-          res(true)
+          res({
+            user : {
+              username: 'pet',
+              email : 'admin@admin.com',
+              role: 'admin'
+            },
+            token: 'fdjfsdhfsjdhdfjdshdjsdjsfh',
+          })
         } else {
           rej(false)
         }

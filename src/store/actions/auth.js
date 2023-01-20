@@ -4,9 +4,9 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-  } from "../constants/actionTypes";
+} from "../constants/actionTypes";
   
-  import AuthService from "../services/auth.service";
+  import AuthService from "../../api/services/auth.service.js";
   
 export const register = (username, email, password) => (dispatch) => {
     return AuthService.register(username, email, password).then(
@@ -56,12 +56,12 @@ export const login = (username, password) => (dispatch) => {
         return Promise.resolve();
       },
       (error) => {
-        const message =
+ /*        const message =
           (error.response &&
             error.response.data &&
             error.response.data.message) ||
           error.message ||
-          error.toString();
+          error.toString(); */
   
         dispatch({
           type: LOGIN_FAIL,
@@ -85,11 +85,22 @@ export const logout = () => (dispatch) => {
     });
   };
 
-export const fakeLogin = () => (dispatch) => {
-    AuthService.fakeLogin().then((data) => {
-        dispatch({
-            type: LOGIN_SUCCESS,
-            payload: { user: data },
-        });
-    })
-  };
+export const fakeLogin = (email,password) => {
+    return async (dispatch,getState) => {
+      console.log('ACTION FAKE LOGIN',dispatch)
+
+      let data = await AuthService.fakeLogin(email,password)
+
+      console.log('FAKE LOGIN RESPONSE',data)
+
+      localStorage.setItem('user',JSON.stringify(data.user))
+      localStorage.setItem('token',JSON.stringify(data.token))
+
+      dispatch({
+          type: LOGIN_SUCCESS,
+          payload: { user: data.user , token : data.token },
+      });
+
+      console.log('APP STATE',getState())
+    }
+};

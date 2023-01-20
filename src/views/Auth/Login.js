@@ -4,33 +4,19 @@ import { RegisterForm } from '../../components/Auth/RegisterForm';
 import loginSvg from '../../assets/images/sitting-reading.svg'
 import registerSvg from '../../assets/images/reading-side.svg'
 
-import {useState , useEffect , useContext} from 'react';
-// import { getRequest } from '../../api/config'
-// import { GlobalContext } from '../../context/Global.context';
-// import {useNavigate} from 'react-router-dom'
+import {useState} from 'react';
+import { Navigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 
 function Login() {
     const [authTemplate, setAuthTemplate] = useState('login');
-    // const [data, setData] = useState([]);
-    // const {globalState} = useContext(GlobalContext)
-    // const navigate = useNavigate()
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
-    // async function getSomething() {
-    //     console.log('NOW')
-    //     const data = await getRequest('entries')
-    //     console.log('FETCH DATA', data)
-    // }
-
-    // useEffect(() => {
-    //     console.log('HOW MANY USE EFFECT')
-    //     getRequest('entries').then(
-    //         (res) => {
-    //             setData(res.data.entries)
-
-    //             console.log('DATA', data)
-    //         }
-    //     )
-    // }, [data.length])
+    if(isLoggedIn) {
+        console.log('DASHBOARD REDIRECT')
+        return <Navigate to="/" replace />;
+    }
 
     function handleAuthTemplate(template) {
         console.log('SWITCH',template)

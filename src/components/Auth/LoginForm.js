@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { Button } from '../Atoms/Btn';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { fakeLogin } from '../../store/actions/auth'
 
 export const LoginForm = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
@@ -17,6 +20,13 @@ export const LoginForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if(email != '' && password != '') {
+            console.log('[LOGIN FORM] EMAIL AND PW COMPILED')
+            dispatch(fakeLogin(email,password)).then(() => {
+                console.log('[LOGIN FORM] ASYNC EXECUTED')
+                navigate('/')
+            })
+        }
     };
 
     return (

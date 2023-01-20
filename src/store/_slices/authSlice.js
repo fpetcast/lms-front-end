@@ -1,19 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
-import authReducer from '../reducers/authReducer';
 
 const initialState = {
-    loading: false,
-    user: {}, // for user object
+    user: {},
     isLoggedIn: false,
-    token: null, // for storing the JWT
+    token: null,
     error: null,
-    success: false, // for monitoring the registration process.
+    success: false,
+    loading: false,
 }
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: authReducer,
+    reducers: null,
     extraReducers: {},
 })
 
