@@ -2,10 +2,13 @@ import { useState } from 'react'
 import { Button } from '../Atoms/Btn';
 import { Input } from '../Atoms/Input';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { register } from '../../store/actions/auth';
 
 export const RegisterForm = (props) => {
     const [inputValue, setInputValue] = useState({ name: "", surname:"", email: "" , password: ""});
     const { name, surname, email, password } = inputValue;
+    const dispatch = useDispatch();
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -18,6 +21,24 @@ export const RegisterForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("[REGISTER FORM] fields:",inputValue);
+        let allRequired = true
+
+        Object.keys(inputValue).forEach(key => {
+            console.log(key, inputValue[key]);
+            if(inputValue[key] === '') {
+                allRequired = false
+            }
+        });
+
+        if(allRequired) {
+            console.log('ALL COMPILED',inputValue)
+            dispatch(register(inputValue.name,inputValue.surname,inputValue.email,inputValue.password))
+            .then((res) => {
+                console.log('REGISTER SUCCESS',res)
+            }).catch((err) => {
+                console.log("[REGISTER FORM] register err",err);
+            })
+        }
     };
 
     return (

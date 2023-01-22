@@ -24,13 +24,15 @@ export const LoginForm = (props) => {
 
         if(email != '' && password != '') {
             console.log('[LOGIN FORM] EMAIL AND PW COMPILED')
-            dispatch(fakeLogin(email,password)).then((success) => {
-                console.log('[LOGIN FORM] ASYNC EXECUTED',success)
-                if(success) {
+            dispatch(fakeLogin(email,password))
+            .then((res) => {
+                console.log('[LOGIN FORM] ASYNC EXECUTED',res)
+                if(res) {
                     navigate('/')
-                }else {
-                    console.log('STATE ERROR', error)
                 }
+            })
+            .catch((error) => {
+                console.log('CATCH ERROR',error)
             })
         }
     };

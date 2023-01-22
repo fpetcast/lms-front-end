@@ -40,7 +40,7 @@ const logout = () => {
 };
 
 const fakeLogin = (email, password) =>  {
-    return new Promise((res, rej) => {
+    return new Promise((res) => {
       setTimeout(() => {
         if (email === 'admin' && password === 'admin') {
           res({
@@ -54,7 +54,7 @@ const fakeLogin = (email, password) =>  {
               token: 'fdjfsdhfsjdhdfjdshdjsdjsfh',
             }
           })
-        } else {
+        }else {
           res({
             status: false,
             error: 'Invalid Credentials'
@@ -70,4 +70,4 @@ export default {
     login,
     logout,
     fetchSomething
-  };
+};

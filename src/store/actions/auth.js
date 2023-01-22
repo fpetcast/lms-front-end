@@ -1,3 +1,5 @@
+import AuthService from "../../api/services/auth.service.js";
+
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -6,56 +8,58 @@ import {
     LOGOUT,
 } from "../constants/actionTypes";
   
-import AuthService from "../../api/services/auth.service.js";
-  
-export const register = (name, surname , email, password, role = 'tutor') => (dispatch) => {
-    return AuthService.register(name, surname, email, password,role).then(
-      (res) => {
-        console.log('REGISTER SUCCESS',res)
+export const register = (name, surname , email, password, role = 'tutor') => {
+  return async (dispatch) => {
+    let res = await AuthService.register(name, surname, email, password, role)
 
-        dispatch({
-          type: REGISTER_SUCCESS,
-        });
-  
-        return Promise.resolve();
-      },
-      (error) => {
-        console.log('REGISTER FAIL',error)
+    if(res.status) {
+      console.log('REGISTER SUCCESS',res)
 
-        dispatch({
-          type: REGISTER_FAIL,
-        });
+      dispatch({
+        type: REGISTER_SUCCESS,
+      });
 
-        return Promise.reject();
-      }
-    );
-  };
-  
-export const login = (username, password) => (dispatch) => {
-    return AuthService.login(username, password).then(
-      (res) => {
-        localStorage.setItem('user',JSON.stringify(res.user))
-        localStorage.setItem('token',res.token)
-  
-        dispatch({
-            type: LOGIN_SUCCESS,
-            payload: { user: res.user , token : res.token },
-        });
-  
-        return Promise.resolve();
-      },
-      (error) => {
-  
-        console.log('LOGIN ERROR',error)
+      return Promise.resolve(true);
+    }else {
+      console.log('REGISTER FAIL',res.error)
 
-        dispatch({
-          type: LOGIN_FAIL,
-          payload: { error : error},
-        });
+      dispatch({
+        type: REGISTER_FAIL,
+      });
+
+      return Promise.reject(false);
+    }
+
+  }
+};
   
-        return Promise.reject();
-      }
-    );
+export const login = (username, password) => {
+  return async (dispatch) => {
+    let res = await AuthService.login(username, password)
+
+    console.log('LOGIN RESPONSE',res)
+
+    if(res.status) {
+      dispatch({
+          type: LOGIN_SUCCESS,
+          payload: { user: res.data.user , token : res.data.token },
+      });
+
+      localStorage.setItem('user',JSON.stringify(res.data.user))
+      localStorage.setItem('token',res.data.token)
+  
+      return Promise.resolve(res.data);
+    }else {
+      console.log('LOGIN ERROR',res.error)
+
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: { error : res.error},
+      });
+
+      return Promise.reject(res.error);
+    }
+  }
 };
   
 export const logout = () => (dispatch) => {
@@ -64,7 +68,7 @@ export const logout = () => (dispatch) => {
     dispatch({
       type: LOGOUT,
     });
-  };
+};
 
 export const fakeLogin = (email,password) => {
     return async (dispatch,getState) => {
@@ -72,7 +76,7 @@ export const fakeLogin = (email,password) => {
 
       let res = await AuthService.fakeLogin(email,password)
 
-      if(res.status == true) {
+      if(res.status === true) {
         console.log('FAKE LOGIN RESPONSE',res.data)
 
         localStorage.setItem('user',JSON.stringify(res.data.user))
@@ -94,7 +98,7 @@ export const fakeLogin = (email,password) => {
           payload: { error : res.error},
         });
 
-        return Promise.resolve(false)
+        return Promise.reject(res.error)
       }
 
     }
