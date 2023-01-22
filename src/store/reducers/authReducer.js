@@ -7,7 +7,7 @@ import {
   } from "../constants/actionTypes";
   
 const user = JSON.parse(localStorage.getItem("user"));
-const token = JSON.parse(localStorage.getItem("token"));
+const token = localStorage.getItem("token");
 
 const authInitialState = {
   user: user ? user : null,
@@ -46,6 +46,7 @@ export default function authReducer(state = authInitialState, action) {
           ...state,
           isLoggedIn: false,
           user: null,
+          error: payload.error
         };
       case LOGOUT:
         return {

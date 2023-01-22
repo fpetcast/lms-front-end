@@ -27,24 +27,21 @@ function Login() {
 
 
     function renderAuthTemplate() {
-        if(authTemplate === 'login') {
-            return <div className="login-form-container w-6/12 flex h-full bg-white flex-col gap-6 items-center">
-                        <h1 className="text-3xl font-semibold w-9/12 text-left mt-30%">Login</h1>
-                        <LoginForm switchTemplate={handleAuthTemplate} ></LoginForm>
-                    </div>
-        }else {
-            return  <div className="register-form-container w-6/12 flex h-full bg-white flex-col gap-6 items-center">
-                         <h1 className="text-3xl font-semibold w-9/12 text-left mt-30%">Register</h1>
+        return <div className="login-form-container w-7/12 flex h-full bg-white flex-col gap-6 items-center justify-center">
+                    <h1 className="text-3xl font-semibold w-9/12 text-left">{authTemplate == 'login' ? 'Login' : 'Register'}</h1>
+                    { authTemplate == 'login' ? 
+                        <LoginForm switchTemplate={handleAuthTemplate} ></LoginForm> :
                         <RegisterForm switchTemplate={handleAuthTemplate} ></RegisterForm>
-                    </div>
-        }
+                    }
+                </div>
     }
+
     return(
         <div className="auth-container flex h-screen items-center">
 
             {renderAuthTemplate()}
 
-            <div className="img-contaienr illustration w-6/12 flex justify-center">
+            <div className="img-contaienr illustration w-5/12 flex justify-center">
                 <img className='w-8/12' alt="auth-illustration" src={authTemplate === 'login' ? loginSvg : registerSvg} />
             </div>
                 

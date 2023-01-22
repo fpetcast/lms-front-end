@@ -1,75 +1,64 @@
 import { useState } from 'react'
 import { Button } from '../Atoms/Btn';
+import { Input } from '../Atoms/Input';
 import { useNavigate } from "react-router-dom";
 
 export const RegisterForm = (props) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
-
-    const handleName = (event) => {
-        setName(event.target.value);
-    };
-
-    const handleEmail = (event) => {
-        setEmail(event.target.value);
-    };
-
-    const handlePassword = (event) => {
-        setPassword(event.target.value);
+    const [inputValue, setInputValue] = useState({ name: "", surname:"", email: "" , password: ""});
+    const { name, surname, email, password } = inputValue;
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setInputValue((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log("[REGISTER FORM] fields:",inputValue);
     };
 
     return (
         <form className="login-form w-9/12 flex flex-col gap-5">
-            <div className="input-container">
-                <label htmlFor="name" className='text-xl font-medium'>Name </label>
-                <input 
-                    type="text" 
-                    name="email"
-                    value={name}
-                    onChange={handleName}
-                    className="custom-input text-lg"
-                    required 
-                />
-                <span className='focus-border bg-palette1-green-strong'></span>
-            </div>
-            <div className="input-container">
-                <label htmlFor="email" className='text-xl font-medium'>Email </label>
-                <input 
-                    type="text" 
-                    name="email"
-                    value={email}
-                    onChange={handleEmail}
-                    className="custom-input text-lg"
-                    required 
-                />
-                <span className='focus-border bg-palette1-green-strong'></span>
-            </div>
-            <div className="input-container">
-                <label className='text-xl'>Password </label>
-                <input 
-                    type="text" 
-                    className="custom-input"
-                    name="password"
-                    value={password}
-                    onChange={handlePassword}
-                    required 
-                />
-                <span className='focus-border bg-palette1-green-strong'></span>
-            </div>
+            <Input
+                value={name}
+                onChange={handleChange}
+                label="Name"
+                id="name"
+                name="name"
+            >
+            </Input>
+            <Input
+                value={surname}
+                onChange={handleChange}
+                label="Surname"
+                id="surname"
+                name="surname"
+            ></Input>
+            <Input
+                value={email}
+                onChange={handleChange}
+                label="Email"
+                id="email"
+                name="email"
+            ></Input>
+            <Input
+                value={password}
+                onChange={handleChange}
+                label="Password"
+                id="password"
+                name="password"
+            ></Input>
             <Button 
                     className='btn-primary w-6/12 self-center mt-5' 
                     onClick={handleSubmit} 
                 >
-                    Login
+                    Register
             </Button>
             <div className='self-center'>
-                Not registered yet? <span className='text-palette1-green-strong cursor-pointer hover:underline' onClick={(e) => props.switchTemplate('register')} >Create an Account</span>
+                Have you an account? <span className='text-palette1-green-strong cursor-pointer hover:underline' onClick={(e) => props.switchTemplate('login')} >Log in</span>
             </div>   
         </form>
     )

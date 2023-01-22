@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button } from '../Atoms/Btn';
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector} from 'react-redux';
 import { fakeLogin } from '../../store/actions/auth'
 
 export const LoginForm = (props) => {
@@ -9,6 +9,7 @@ export const LoginForm = (props) => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const error = useSelector((state) => state.auth.error)
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
@@ -20,11 +21,16 @@ export const LoginForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         if(email != '' && password != '') {
             console.log('[LOGIN FORM] EMAIL AND PW COMPILED')
-            dispatch(fakeLogin(email,password)).then(() => {
-                console.log('[LOGIN FORM] ASYNC EXECUTED')
-                navigate('/')
+            dispatch(fakeLogin(email,password)).then((success) => {
+                console.log('[LOGIN FORM] ASYNC EXECUTED',success)
+                if(success) {
+                    navigate('/')
+                }else {
+                    console.log('STATE ERROR', error)
+                }
             })
         }
     };

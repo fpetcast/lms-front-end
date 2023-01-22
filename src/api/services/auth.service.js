@@ -1,11 +1,17 @@
 import { postRequest } from "../config";
+import axios from "axios";
 
-const register = (username, email, password) => {
+const register = (name, surname, email, password) => {
     return postRequest("register", {
-      username,
+      name,
+      surname,
       email,
       password,
-    });
+    }).then((response)=> {
+      return response.data;
+    }).catch((error) => {
+      console.log(error)
+    })
   };
   
 const login = (email, password) => {
@@ -14,16 +20,23 @@ const login = (email, password) => {
         password,
       })
       .then((response) => {
-        if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-        }
-  
         return response.data;
-      });
+      }).catch((error) => {
+        console.log(error)
+      })
+};
+
+const fetchSomething = () => {
+  return axios.get("https://dummyjson.com/products/")
+    .then((response) => {
+      console.log('DUMMY RESPONSE',response)
+      return response.data;
+    });
 };
   
 const logout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
 };
 
 const fakeLogin = (email, password) =>  {
@@ -31,17 +44,23 @@ const fakeLogin = (email, password) =>  {
       setTimeout(() => {
         if (email === 'admin' && password === 'admin') {
           res({
-            user : {
-              username: 'pet',
-              email : 'admin@admin.com',
-              role: 'admin'
-            },
-            token: 'fdjfsdhfsjdhdfjdshdjsdjsfh',
+            status: true,
+            data : {
+              user : {
+                username: 'pet',
+                email : 'admin@admin.com',
+                role: 'admin'
+              },
+              token: 'fdjfsdhfsjdhdfjdshdjsdjsfh',
+            }
           })
         } else {
-          rej(false)
+          res({
+            status: false,
+            error: 'Invalid Credentials'
+          })
         }
-      }, 1000)
+      }, 1300)
     })  
 }
   
@@ -50,4 +69,5 @@ export default {
     register,
     login,
     logout,
+    fetchSomething
   };
