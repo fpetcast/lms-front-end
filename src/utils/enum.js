@@ -12,3 +12,25 @@ export const sidebarMenu = [
         route : '/create-course',
     },
 ]
+
+
+export const filterCoursesButtons = [
+    {
+        label : 'Active',
+        actionPayload : {
+            filter : 'ACTIVE'
+        }
+    },
+    {
+        label : 'Draft',
+        actionPayload : {
+            filter : 'DRAFT'
+        }
+    },
+    {
+        label : 'Archive',
+        actionPayload : {
+            filter : 'ARCHIVE'
+        }
+    },
+]

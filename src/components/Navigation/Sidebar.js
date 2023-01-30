@@ -6,7 +6,7 @@ function Sidebar() {
 
     const menu = sidebarMenu.map((item) => 
         <li className="menu-item text-lg font-semibold cursor-pointer" key={item.label}>
-            <a className="flex items-center gap-3 px-3 py-3 rounded-lg text-zinc-400 hover:text-white hover:bg-blue-500" href={item.route}>
+            <a className="flex items-center gap-5 px-3 py-3 rounded-lg text-zinc-300 hover:text-white hover:bg-blue-500" href={item.route}>
                 <FontAwesomeIcon icon={faUser} />
                 <span>{item.label}</span>
             </a>
@@ -15,13 +15,13 @@ function Sidebar() {
 
     return (  
     
-    <aside className="sidebar flex flex-col mt-5 ml-10 w-2/12 gap-6">
-        <div className="app-logo flex text-blue-500 items-center text-4xl gap-2">
+    <aside className="sidebar flex flex-col w-3/12 gap-6 bg-palette2-grey-dark rounded-r-xl hover:shadow-md transition-shadow">
+        <div className="app-logo flex text-blue-400 items-center text-4xl gap-2 px-5 mt-10">
             <FontAwesomeIcon icon={faGraduationCap} />
             <span className="logo-text">LMS</span>
         </div>
 
-        <ul className="menu-list bg-white h-3/6 gap-4 w-full flex flex-col justify-start pt-5 px-5 rounded-lg hover:shadow-md transition-shadow">
+        <ul className="menu-list h-3/6 gap-4 w-full flex flex-col justify-start pt-5 px-5">
             {menu}
         </ul>
 

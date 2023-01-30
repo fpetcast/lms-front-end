@@ -4,4 +4,9 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 
+export const SELECT_COURSE = 'SELECT_COURSE'
+export const EDIT_COURSE = 'EDIT_COURSE'
+export const FILTER_COURSE_GRID = 'FILTER_COURSE_GRID'
+export const DELETE_COURSE = 'DELETE_COURSE'
+
 export const LOADING = 'LOADING'

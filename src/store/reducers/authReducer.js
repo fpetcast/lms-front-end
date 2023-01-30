@@ -20,8 +20,6 @@ const authInitialState = {
 
 export default function authReducer(state = authInitialState, action) {
     const { type, payload } = action;
-
-    console.log('DISPATCH ACTION',action)
   
     switch (type) {
       case REGISTER_SUCCESS:

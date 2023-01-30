@@ -1,0 +1,46 @@
+{
+    "courses" : [
+        {
+            "id" : 1,
+            "status" : "active",
+            "title" : "Course 1",
+            "description": "Text",
+            "category": "String",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": []
+        },
+        {
+            "id" : 2,
+            "status" : "active",
+            "title" : "Course 2",
+            "description": "Text",
+            "category": "String",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": []
+        },
+        {
+            "id" : 3,
+            "title" : "Course 3",
+            "status" : "draft",
+            "description": "Text",
+            "category": "String",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": []
+        }
+    ]
+}
