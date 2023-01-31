@@ -5,7 +5,7 @@
             "status" : "active",
             "title" : "Course 1",
             "description": "Text",
-            "category": "String",
+            "category": "ai",
             "price": "String",
             "level": "String",
             "thumbnail": "String",
@@ -19,28 +19,28 @@
             "status" : "active",
             "title" : "Course 2",
             "description": "Text",
-            "category": "String",
+            "category": "iot",
             "price": "String",
             "level": "String",
             "thumbnail": "String",
             "video_preview": "String",
             "lang": "String",
             "global_duration": "Strin",
-            "tags": []
+            "tags": ["ldldlsd","computing","boh"]
         },
         {
             "id" : 3,
             "title" : "Course 3",
             "status" : "draft",
             "description": "Text",
-            "category": "String",
+            "category": "cloud",
             "price": "String",
             "level": "String",
             "thumbnail": "String",
             "video_preview": "String",
             "lang": "String",
             "global_duration": "Strin",
-            "tags": []
+            "tags": ["computing","boh"]
         }
     ]
 }
