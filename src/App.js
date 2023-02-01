@@ -12,12 +12,13 @@ function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
   return (
-    <div className="app-container w-full bg-app min-h-screen flex">
+    <div className="app-container relative w-full bg-app min-h-screen flex">
       {
-         isLoggedIn && <Sidebar></Sidebar>
+         isLoggedIn && 
+         <Sidebar></Sidebar>
       }
       <div className='router-container w-full'>
-        <RouterProvider router={router} />
+         <RouterProvider router={router} />
       </div>
     </div>
   );

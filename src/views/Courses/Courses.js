@@ -1,24 +1,18 @@
 import IndexCard from '../../components/Courses/IndexCard';
 import { useSelector , useDispatch } from 'react-redux'
 import { filterCoursesButtons } from '../../utils/enum';
-import { Button } from '../../components/Atoms/Btn';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faFilter , faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FILTER_COURSE_GRID, SYNC_FILTERED } from '../../store/constants/actionTypes';
-/* import { useEffect } from 'react'; */
+import { FILTER_COURSE_GRID, REMOVE_ALL_FILTERS} from '../../store/constants/actionTypes';
+import { useState , useMemo } from 'react';
 
 function Courses() {
     const courses = useSelector((state) => state.courses.coursesList)
-    const coursesFiltered = useSelector((state) => state.courses.filteredCourses)
-    const selectedCourses = useSelector((state) => state.courses.selectedCourses)
     const activeFilter = useSelector((state) => state.courses.filter)
-    const dispatch = useDispatch()
+    const statusCounter = useSelector((state) => state.courses.statusCounter)
 
-    
-    function isSelected(ID) {
-        console.log('IS SELECTED',selectedCourses)
-        return selectedCourses.find((courseID) => ID == courseID)
-    }
+
+    const dispatch = useDispatch()
 
     const filterCourseAction = (payload) => {
         console.log('FILTER ACTION',payload)
@@ -29,18 +23,18 @@ function Courses() {
         <IndexCard
             key={course.id}
             course={course}
-            selected={isSelected(course.id)}
         >
         </IndexCard>
     )
 
-    const courseFilteredGrid = coursesFiltered.map((course) => 
+/*     const courseFilteredGrid = coursesFiltered.map((course) => 
         <IndexCard
             key={course.id}
             course={course}
+            selected={isSelected(course.id)}
         >
         </IndexCard>
-    )
+    ) */
 
     console.log('ENUM FILTER BTNS',filterCoursesButtons)
 
@@ -55,10 +49,11 @@ function Courses() {
     const filterButtons = filterCoursesButtons.map((btn) => {
        return <button 
             key={btn.label} 
-            className={"shadow-md px-2 py-2 rounded-md text-lg " + (isBtnActive(btn.actionPayload.filter))}
+            className={"shadow-md px-3 py-2 rounded-md text-lg flex items-center gap-2 font-semibold " + (isBtnActive(btn.actionPayload.filter))}
             onClick={() => filterCourseAction(btn.actionPayload)}
         >
-            {btn.label}
+            <span className='text'>{btn.label}</span>
+            <span className=''>{statusCounter[btn.status]}</span>
         </button>
     })
 
@@ -68,19 +63,26 @@ function Courses() {
         <div className="courses-index px-20 mt-10">
             <div className='topbar'>
             </div>
-            <h1 className='title text-5xl font-bold mb-8'>
+            <h1 className='title text-5xl font-bold mb-10'>
                 Courses
             </h1>
             <div className='filters flex justify-between gap-10 mb-10 items-end'>
-                <div className='flex flex-col gap-2'>
-                    <p className='text-zinc-600 text-lg mr-2'>Status:</p>
-                    <div className='flex gap-3'>
+                <div className='flex gap-3'>
                         {filterButtons}
-                    </div>
                 </div>
-                <div>
+                <div className='flex gap-3'>
+                    {
+                        activeFilter != '' &&  
+                        <button
+                            className='shadow-md flex gap-1 text-lg items-center px-2 py-2 rounded-md text-white bg-red-500'
+                            onClick={() => dispatch({type: REMOVE_ALL_FILTERS})}
+                        >
+                            <FontAwesomeIcon className='' icon={faFilter}></FontAwesomeIcon>
+                            <span>Reset Filters</span>
+                        </button>
+                    }
                     <button
-                        className='shadow-md flex gap-1 items-center px-2 py-2 rounded-md text-white bg-blue-400'
+                        className='shadow-md flex gap-1 text-lg items-center px-2 py-2 rounded-md text-white bg-blue-400'
                     >
                         <FontAwesomeIcon className='' icon={faFilter}></FontAwesomeIcon>
                         <span>All Filters</span>
@@ -88,7 +90,7 @@ function Courses() {
                 </div>
             </div>
             <div className='course-grid grid grid-cols-3 gap-5'>
-                {activeFilter !== '' ? courseFilteredGrid : courseGrid}
+                {courseGrid}
             </div>
         </div>
      );

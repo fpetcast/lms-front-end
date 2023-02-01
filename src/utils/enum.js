@@ -17,18 +17,21 @@ export const sidebarMenu = [
 export const filterCoursesButtons = [
     {
         label : 'Active',
+        status : 'active',
         actionPayload : {
             filter : 'ACTIVE'
         }
     },
     {
         label : 'Draft',
+        status : 'draft',
         actionPayload : {
             filter : 'DRAFT'
         }
     },
     {
         label : 'Archive',
+        status : 'archive',
         actionPayload : {
             filter : 'ARCHIVE'
         }
