@@ -44,7 +44,7 @@
         },
         {
             "id" : 4,
-            "title" : "Course 3",
+            "title" : "Course 4",
             "status" : "draft",
             "description": "Text",
             "category": "cloud",
@@ -58,7 +58,7 @@
         },
         {
             "id" : 5,
-            "title" : "Course 3",
+            "title" : "Course 5",
             "status" : "draft",
             "description": "Text",
             "category": "cloud",
@@ -72,7 +72,7 @@
         },
         {
             "id" : 6,
-            "title" : "Course 3",
+            "title" : "Course 6",
             "status" : "draft",
             "description": "Text",
             "category": "cloud",
@@ -86,7 +86,7 @@
         },
         {
             "id" : 7,
-            "title" : "Course 3",
+            "title" : "Course 7",
             "status" : "draft",
             "description": "Text",
             "category": "cloud",
