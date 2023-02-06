@@ -1,3 +1,6 @@
+import VideoUpload from "../components/Courses/Steps/VideoUploads"
+import CourseGeneralInfo from "../components/Courses/Steps/CourseGeneralInfo"
+
 export const sidebarMenu = [
     {
         label : 'Dashboard',
@@ -58,3 +61,43 @@ export const courseCategories = [
         slug: 'cloud'
     }
 ]
+
+export const stepperComponents = [
+    {
+        label : 'step 1',
+        component : <CourseGeneralInfo></CourseGeneralInfo> 
+    },
+    {
+        label : 'step 2',
+        component : <VideoUpload></VideoUpload>
+    },
+]
+
+export const courseStructure = {
+    title: '',
+    author: '',
+    description: '',
+    category: '',
+    price: 0,
+    level: '',
+    thumbnail: '',
+    video_preview: '',
+    lang: '',
+    global_duration: '',
+    tags: [],
+    teachers: [],
+    sections: [
+        {
+            title : '',
+            duration : '',
+            elements : [
+                {
+                    type: '',
+                    document_path: '',
+                    video_id: '',
+                    quiz_id: '',
+                }
+            ]
+        }
+    ]
+}

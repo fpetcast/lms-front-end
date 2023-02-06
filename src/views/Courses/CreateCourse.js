@@ -1,7 +1,9 @@
+import Stepper from "../../components/Courses/Stepper";
+
 function CreateCourse() {
     return ( 
         <div>
-            create course
+            <Stepper></Stepper>
         </div>
      );
 }

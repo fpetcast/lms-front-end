@@ -41,7 +41,6 @@ export default function coursesReducer(state = coursesInitialState, action) {
             return {
                 ...state,
                 coursesList: state.coursesList.filter((course) => course.id != payload.id),
-                selectedCourses : state.selectedCourses.filter((courseID) => courseID != payload.id)
             }
         case SELECT_COURSE:
                 console.log('SELECTING COURSE',state.selectedCourses, payload.id)

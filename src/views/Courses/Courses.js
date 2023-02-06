@@ -27,7 +27,7 @@ function Courses() {
         </IndexCard>
     )
 
-/*     const courseFilteredGrid = coursesFiltered.map((course) => 
+    /*const courseFilteredGrid = coursesFiltered.map((course) => 
         <IndexCard
             key={course.id}
             course={course}
@@ -60,7 +60,7 @@ function Courses() {
     console.log('FILTER BTNS',filterButtons)
 
     return ( 
-        <div className="courses-index px-20 mt-10">
+        <div className="courses-index">
             <div className='topbar'>
             </div>
             <h1 className='title text-5xl font-bold mb-10'>
