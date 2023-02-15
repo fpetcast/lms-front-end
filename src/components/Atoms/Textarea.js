@@ -1,4 +1,4 @@
-export const Input = ({id,label,type,name,value,onChange,inputClass,validation,placeholder}) => {
+export const Textarea = ({id,label,type,name,value,onChange,inputClass,validation,placeholder}) => {
     return(
         <div className="input-container">
             {
@@ -7,21 +7,19 @@ export const Input = ({id,label,type,name,value,onChange,inputClass,validation,p
                     {label}
                 </label>
             }
-            <input 
+            <textarea 
                 id={id}
-                type={type}
+                type={type} 
+                rows="4" 
+                cols="50"
                 name={name}
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
                 className={`text-lg ${inputClass}`}
                 data-validation={validation}
-            />
-            {
-                inputClass === 'custom-input' &&
-                <span className='focus-border bg-palette1-green-strong'></span>
-            }
-
+            >
+            </textarea>
         </div>
     )
 }

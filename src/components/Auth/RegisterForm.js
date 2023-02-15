@@ -49,6 +49,7 @@ export const RegisterForm = (props) => {
                 label="Name"
                 id="name"
                 name="name"
+                inputClass='custom-input'
             >
             </Input>
             <Input
@@ -57,6 +58,7 @@ export const RegisterForm = (props) => {
                 label="Surname"
                 id="surname"
                 name="surname"
+                inputClass='custom-input'
             ></Input>
             <Input
                 value={email}
@@ -64,6 +66,7 @@ export const RegisterForm = (props) => {
                 label="Email"
                 id="email"
                 name="email"
+                inputClass='custom-input'
             ></Input>
             <Input
                 value={password}
@@ -71,6 +74,7 @@ export const RegisterForm = (props) => {
                 label="Password"
                 id="password"
                 name="password"
+                inputClass='custom-input'
             ></Input>
             <Button 
                     className='btn-primary w-6/12 self-center mt-5' 
