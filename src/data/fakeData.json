@@ -1,0 +1,102 @@
+{
+    "courses" : [
+        {
+            "id" : 1,
+            "status" : "active",
+            "title" : "Course 1",
+            "description": "Text",
+            "category": "ai",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": []
+        },
+        {
+            "id" : 2,
+            "status" : "active",
+            "title" : "Course 2",
+            "description": "Text",
+            "category": "iot",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": ["ldldlsd","computing","boh"]
+        },
+        {
+            "id" : 3,
+            "title" : "Course 3",
+            "status" : "draft",
+            "description": "Text",
+            "category": "cloud",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": ["computing","boh"]
+        },
+        {
+            "id" : 4,
+            "title" : "Course 4",
+            "status" : "draft",
+            "description": "Text",
+            "category": "cloud",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": ["computing","boh"]
+        },
+        {
+            "id" : 5,
+            "title" : "Course 5",
+            "status" : "draft",
+            "description": "Text",
+            "category": "cloud",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": ["computing","boh"]
+        },
+        {
+            "id" : 6,
+            "title" : "Course 6",
+            "status" : "draft",
+            "description": "Text",
+            "category": "cloud",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": ["computing","boh"]
+        },
+        {
+            "id" : 7,
+            "title" : "Course 7",
+            "status" : "draft",
+            "description": "Text",
+            "category": "cloud",
+            "price": "String",
+            "level": "String",
+            "thumbnail": "String",
+            "video_preview": "String",
+            "lang": "String",
+            "global_duration": "Strin",
+            "tags": ["computing","boh"]
+        }
+    ]
+}
